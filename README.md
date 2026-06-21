@@ -1,1 +1,0 @@
-# VyaparMitra.AI-project
