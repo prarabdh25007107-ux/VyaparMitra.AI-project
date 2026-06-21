@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>VyapaarMitra AI</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- HEADER -->
+  <header
+    class="bg-gradient-to-r from-blue-700 to-indigo-700 text-white p-6 shadow-xl"
+  >
+
+    <div
+      class="max-w-7xl mx-auto flex justify-between items-center"
+    >
+
+      <div>
+
+        <h1 class="text-4xl font-bold">
+          🚀 VyapaarMitra AI
+        </h1>
+
+        <p class="mt-2 text-lg text-blue-100">
+          Smart Compliance & Government Scheme Assistant
+        </p>
+
+      </div>
+
+      <button
+        onclick="toggleDarkMode()"
+        class="bg-white text-black px-4 py-2 rounded-xl font-semibold"
+      >
+        🌙 Dark Mode
+      </button>
+
+    </div>
+
+  </header>
+
+  <!-- MAIN -->
+  <div class="max-w-7xl mx-auto p-6">
+
+    <!-- HERO -->
+    <div
+      class="bg-gradient-to-r from-indigo-600 to-blue-600 rounded-3xl p-10 text-white shadow-2xl mb-8"
+    >
+
+      <h2 class="text-5xl font-bold">
+        Simplify Business Compliance
+      </h2>
+
+      <p class="mt-4 text-xl text-blue-100">
+        Track filings, discover schemes, connect consultants and stay compliant.
+      </p>
+
+    </div>
+
+    <!-- FORM -->
+    <div
+      class="bg-white rounded-3xl shadow-xl p-8 mb-8"
+    >
+
+      <h2 class="text-3xl font-bold text-blue-700 mb-6">
+        Business Information
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- BUSINESS NAME -->
+        <div>
+
+          <label class="font-semibold">
+            Business Name
+          </label>
+
+          <input
+            type="text"
+            id="businessName"
+            placeholder="Enter business name"
+            class="w-full mt-2 p-4 border rounded-xl"
+          />
+
+        </div>
+
+        <!-- BUSINESS TYPE -->
+        <div>
+
+          <label class="font-semibold">
+            Business Type
+          </label>
+
+          <select
+            id="businessType"
+            class="w-full mt-2 p-4 border rounded-xl"
+          >
+
+            <option>Bakery</option>
+            <option>Retail Shop</option>
+            <option>Restaurant</option>
+            <option>Manufacturing</option>
+            <option>Startup</option>
+
+          </select>
+
+        </div>
+
+        <!-- STATE -->
+        <div>
+
+          <label class="font-semibold">
+            State
+          </label>
+
+          <select
+            id="state"
+            class="w-full mt-2 p-4 border rounded-xl"
+          >
+
+            <option>Uttar Pradesh</option>
+            <option>Delhi</option>
+            <option>Maharashtra</option>
+            <option>Karnataka</option>
+
+          </select>
+
+        </div>
+
+        <!-- TURNOVER -->
+        <div>
+
+          <label class="font-semibold">
+            Annual Turnover
+          </label>
+
+          <input
+            type="text"
+            id="turnover"
+            placeholder="₹15 Lakhs"
+            class="w-full mt-2 p-4 border rounded-xl"
+          />
+
+        </div>
+
+      </div>
+
+      <!-- BUTTON -->
+      <button
+        onclick="analyzeBusiness()"
+        class="mt-8 bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg"
+      >
+
+        Analyze Business
+
+      </button>
+
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard" class="hidden">
+
+      <!-- CARDS -->
+      <div class="grid md:grid-cols-4 gap-6 mb-8">
+
+        <!-- SCORE -->
+        <div class="bg-white rounded-3xl p-6 shadow-xl">
+
+          <div class="flex justify-between items-center">
+
+            <h3 class="text-lg font-bold text-green-600">
+              Compliance Score
+            </h3>
+
+            <i class="fa-solid fa-chart-line text-green-500 text-2xl"></i>
+
+          </div>
+
+          <p
+            id="complianceScore"
+            class="text-5xl font-bold mt-5"
+          >
+            0%
+          </p>
+
+        </div>
+
+        <!-- RISK -->
+        <div class="bg-white rounded-3xl p-6 shadow-xl">
+
+          <div class="flex justify-between items-center">
+
+            <h3 class="text-lg font-bold text-red-600">
+              Risk Level
+            </h3>
+
+            <i class="fa-solid fa-triangle-exclamation text-red-500 text-2xl"></i>
+
+          </div>
+
+          <p
+            id="riskLevel"
+            class="text-4xl font-bold mt-5"
+          >
+            -
+          </p>
+
+        </div>
+
+        <!-- DEADLINE -->
+        <div class="bg-white rounded-3xl p-6 shadow-xl">
+
+          <div class="flex justify-between items-center">
+
+            <h3 class="text-lg font-bold text-yellow-600">
+              Upcoming Deadline
+            </h3>
+
+            <i class="fa-solid fa-calendar text-yellow-500 text-2xl"></i>
+
+          </div>
+
+          <p
+            id="deadlineTitle"
+            class="text-2xl font-bold mt-5"
+          >
+            -
+          </p>
+
+          <p
+            id="deadlineDate"
+            class="text-gray-500 mt-2"
+          >
+          </p>
+
+        </div>
+
+        <!-- SCHEME COUNT -->
+        <div class="bg-white rounded-3xl p-6 shadow-xl">
+
+          <div class="flex justify-between items-center">
+
+            <h3 class="text-lg font-bold text-blue-600">
+              Eligible Schemes
+            </h3>
+
+            <i class="fa-solid fa-money-bill text-blue-500 text-2xl"></i>
+
+          </div>
+
+          <p
+            id="schemeCount"
+            class="text-5xl font-bold mt-5"
+          >
+            0
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- COMPLIANCE + SCHEMES -->
+      <div class="grid md:grid-cols-2 gap-8 mb-8">
+
+        <!-- COMPLIANCE -->
+        <div
+          class="bg-white rounded-3xl shadow-xl p-8"
+        >
+
+          <h2 class="text-3xl font-bold text-blue-700 mb-6">
+            Compliance Checklist
+          </h2>
+
+          <ul
+            id="complianceList"
+            class="space-y-4"
+          >
+          </ul>
+
+        </div>
+
+        <!-- SCHEMES -->
+        <div
+          class="bg-white rounded-3xl shadow-xl p-8"
+        >
+
+          <h2 class="text-3xl font-bold text-green-700 mb-6">
+            Government Schemes
+          </h2>
+
+          <ul
+            id="schemeList"
+            class="space-y-4"
+          >
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- CHART -->
+      <div
+        class="bg-white rounded-3xl shadow-xl p-8 mb-8"
+      >
+
+        <h2 class="text-3xl font-bold text-purple-700 mb-6">
+          Compliance Analytics
+        </h2>
+
+        <canvas id="complianceChart"></canvas>
+
+      </div>
+
+      <!-- AI ASSISTANT -->
+      <div
+        class="bg-white rounded-3xl shadow-xl p-8 mb-8"
+      >
+
+        <h2 class="text-3xl font-bold text-indigo-700 mb-6">
+          AI Assistant
+        </h2>
+
+        <div class="flex gap-4">
+
+          <input
+            type="text"
+            id="userQuestion"
+            placeholder="Ask anything about compliance..."
+            class="flex-1 p-4 border rounded-xl"
+          />
+
+          <button
+            onclick="askAI()"
+            class="bg-indigo-700 hover:bg-indigo-800 text-white px-8 py-4 rounded-xl font-bold"
+          >
+
+            Ask AI
+
+          </button>
+
+        </div>
+
+        <!-- RESPONSE -->
+        <div
+          id="aiResponse"
+          class="hidden mt-6 bg-indigo-50 p-5 rounded-2xl text-lg"
+        >
+        </div>
+
+      </div>
+
+      <!-- CONSULTANTS -->
+      <div
+        class="bg-white rounded-3xl shadow-xl p-8"
+      >
+
+        <h2 class="text-3xl font-bold text-red-700 mb-8">
+          Verified Consultants
+        </h2>
+
+        <div
+          id="consultantContainer"
+          class="grid md:grid-cols-3 gap-6"
+        >
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    // DARK MODE
+    let dark = false;
+
+    function toggleDarkMode() {
+
+      dark = !dark;
+
+      if (dark) {
+
+        document.body.classList.remove(
+          "bg-gray-100"
+        );
+
+        document.body.classList.add(
+          "bg-gray-900",
+          "text-white"
+        );
+
+      }
+
+      else {
+
+        document.body.classList.remove(
+          "bg-gray-900",
+          "text-white"
+        );
+
+        document.body.classList.add(
+          "bg-gray-100"
+        );
+
+      }
+
+    }
+
+    // ANALYZE BUSINESS
+    function analyzeBusiness() {
+
+      document
+        .getElementById("dashboard")
+        .classList
+        .remove("hidden");
+
+      const type =
+        document.getElementById(
+          "businessType"
+        ).value;
+
+      let compliances = [];
+      let schemes = [];
+      let score = 0;
+      let risk = "";
+      let deadlineTitle = "";
+      let deadlineDate = "";
+
+      // BAKERY
+      if (type === "Bakery") {
+
+        compliances = [
+
+          "FSSAI License",
+          "GST Optional",
+          "Shop Act License",
+          "Fire Safety Certificate",
+          "Municipality Approval"
+
+        ];
+
+        schemes = [
+
+          "Mudra Loan",
+          "PMEGP Scheme",
+          "MSME Benefits"
+
+        ];
+
+        score = 85;
+        risk = "LOW";
+        deadlineTitle = "FSSAI Renewal";
+        deadlineDate = "15 May 2026";
+
+      }
+
+      // RETAIL SHOP
+      else if (type === "Retail Shop") {
+
+        compliances = [
+
+          "GST Registration",
+          "Trade License",
+          "MSME Registration",
+          "Income Tax Filing"
+
+        ];
+
+        schemes = [
+
+          "Mudra Loan",
+          "MSME Subsidy"
+
+        ];
+
+        score = 75;
+        risk = "MEDIUM";
+        deadlineTitle = "GST Filing";
+        deadlineDate = "11 May 2026";
+
+      }
+
+      // RESTAURANT
+      else if (type === "Restaurant") {
+
+        compliances = [
+
+          "FSSAI License",
+          "Fire Safety",
+          "Health Trade License",
+          "GST Registration"
+
+        ];
+
+        schemes = [
+
+          "Food Subsidy",
+          "Mudra Loan"
+
+        ];
+
+        score = 65;
+        risk = "HIGH";
+        deadlineTitle = "Health License";
+        deadlineDate = "8 May 2026";
+
+      }
+
+      // MANUFACTURING
+      else if (type === "Manufacturing") {
+
+        compliances = [
+
+          "Factory License",
+          "Pollution Clearance",
+          "GST Registration",
+          "PF Registration"
+
+        ];
+
+        schemes = [
+
+          "Capital Subsidy",
+          "MSME Benefits"
+
+        ];
+
+        score = 60;
+        risk = "HIGH";
+        deadlineTitle = "Pollution Clearance";
+        deadlineDate = "20 May 2026";
+
+      }
+
+      // STARTUP
+      else {
+
+        compliances = [
+
+          "Startup Registration",
+          "GST Registration",
+          "ROC Filing"
+
+        ];
+
+        schemes = [
+
+          "Startup India",
+          "Seed Funding"
+
+        ];
+
+        score = 80;
+        risk = "MEDIUM";
+        deadlineTitle = "ROC Filing";
+        deadlineDate = "30 May 2026";
+
+      }
+
+      // UPDATE CARDS
+      document.getElementById(
+        "complianceScore"
+      ).innerText = score + "%";
+
+      document.getElementById(
+        "riskLevel"
+      ).innerText = risk;
+
+      document.getElementById(
+        "deadlineTitle"
+      ).innerText = deadlineTitle;
+
+      document.getElementById(
+        "deadlineDate"
+      ).innerText = deadlineDate;
+
+      document.getElementById(
+        "schemeCount"
+      ).innerText = schemes.length;
+
+      // COMPLIANCE LIST
+      const complianceList =
+        document.getElementById(
+          "complianceList"
+        );
+
+      complianceList.innerHTML = "";
+
+      compliances.forEach(c => {
+
+        let li =
+          document.createElement("li");
+
+        li.className =
+          "bg-blue-50 p-4 rounded-xl font-semibold flex justify-between";
+
+        li.innerHTML = `
+
+          <span>✔ ${c}</span>
+
+          <span class="text-green-600">
+            Active
+          </span>
+
+        `;
+
+        complianceList.appendChild(li);
+
+      });
+
+      // SCHEMES LIST
+      const schemeList =
+        document.getElementById(
+          "schemeList"
+        );
+
+      schemeList.innerHTML = "";
+
+      schemes.forEach(s => {
+
+        let li =
+          document.createElement("li");
+
+        li.className =
+          "bg-green-50 p-4 rounded-xl font-semibold";
+
+        li.innerHTML = `🚀 ${s}`;
+
+        schemeList.appendChild(li);
+
+      });
+
+      // CHART
+      if (window.myChart) {
+
+        window.myChart.destroy();
+
+      }
+
+      window.myChart =
+        new Chart(
+
+          document.getElementById(
+            "complianceChart"
+          ),
+
+          {
+
+            type: "doughnut",
+
+            data: {
+
+              labels: [
+
+                "Completed",
+                "Pending"
+
+              ],
+
+              datasets: [{
+
+                data: [
+
+                  score,
+                  100 - score
+
+                ]
+
+              }]
+
+            }
+
+          }
+
+        );
+
+    }
+
+    // AI ASSISTANT
+    function askAI() {
+
+      const q =
+        document.getElementById(
+          "userQuestion"
+        ).value;
+
+      let answer = "";
+
+      if (
+        q.toLowerCase().includes("gst")
+      ) {
+
+        answer =
+          "GST registration becomes mandatory above prescribed turnover limits.";
+
+      }
+
+      else if (
+        q.toLowerCase().includes("mudra")
+      ) {
+
+        answer =
+          "Mudra Loan helps MSMEs with financing support.";
+
+      }
+
+      else if (
+        q.toLowerCase().includes("license")
+      ) {
+
+        answer =
+          "Business licenses depend on your business category and state laws.";
+
+      }
+
+      else {
+
+        answer =
+          "Please connect with our verified consultants for detailed legal guidance.";
+
+      }
+
+      const box =
+        document.getElementById(
+          "aiResponse"
+        );
+
+      box.classList.remove(
+        "hidden"
+      );
+
+      box.innerHTML = `
+
+        <strong>AI Assistant:</strong>
+
+        <br><br>
+
+        ${answer}
+
+      `;
+
+    }
+
+    // CONSULTANTS DATA
+    const consultants = [
+
+      {
+        name: "Raj Sharma",
+        expertise: "GST Expert",
+        rating: 4.8,
+        fee: 499
+      },
+
+      {
+        name: "Priya Verma",
+        expertise: "MSME Consultant",
+        rating: 4.7,
+        fee: 299
+      },
+
+      {
+        name: "Amit Gupta",
+        expertise: "Tax Advisor",
+        rating: 4.9,
+        fee: 699
+      }
+
+    ];
+
+    // LOAD CONSULTANTS
+    function loadConsultants() {
+
+      const container =
+        document.getElementById(
+          "consultantContainer"
+        );
+
+      consultants.forEach(c => {
+
+        let card =
+          document.createElement("div");
+
+        card.className =
+          "bg-gray-50 rounded-3xl p-6 shadow-lg";
+
+        card.innerHTML = `
+
+          <h3 class="text-2xl font-bold">
+            ${c.name}
+          </h3>
+
+          <p class="mt-3 text-gray-600">
+            ${c.expertise}
+          </p>
+
+          <p class="mt-3">
+            ⭐ ${c.rating}
+          </p>
+
+          <p class="mt-3 text-green-700 font-bold text-xl">
+            ₹${c.fee} / Session
+          </p>
+
+          <button
+            onclick="bookConsultant('${c.name}')"
+            class="mt-5 bg-red-600 hover:bg-red-700 text-white px-5 py-3 rounded-xl font-bold"
+          >
+
+            Book Now
+
+          </button>
+
+        `;
+
+        container.appendChild(card);
+
+      });
+
+    }
+
+    // BOOK CONSULTANT
+    function bookConsultant(name) {
+
+      const popup =
+        document.createElement("div");
+
+      popup.className =
+        "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50";
+
+      popup.id = "bookingPopup";
+
+      popup.innerHTML = `
+
+        <div class="bg-white p-8 rounded-3xl shadow-2xl w-[90%] md:w-[400px] text-center">
+
+          <div class="text-6xl mb-4">
+            ✅
+          </div>
+
+          <h2 class="text-3xl font-bold text-green-700">
+            Booking Confirmed
+          </h2>
+
+          <p class="mt-4 text-gray-600 text-lg">
+            Your consultation with
+          </p>
+
+          <p class="text-2xl font-bold mt-2">
+            ${name}
+          </p>
+
+          <p class="mt-4 text-gray-500">
+            Meeting link and payment details will be shared on WhatsApp/email.
+          </p>
+
+          <button
+            onclick="closePopup()"
+            class="mt-6 bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-xl font-bold"
+          >
+
+            Close
+
+          </button>
+
+        </div>
+
+      `;
+
+      document.body.appendChild(
+        popup
+      );
+
+    }
+
+    // CLOSE POPUP
+    function closePopup() {
+
+      const popup =
+        document.getElementById(
+          "bookingPopup"
+        );
+
+      if (popup) {
+
+        popup.remove();
+
+      }
+
+    }
+
+    // INITIALIZE
+    loadConsultants();
+
+  </script>
+
+</body>
+
+</html>

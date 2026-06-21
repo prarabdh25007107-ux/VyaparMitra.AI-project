@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Setup | VyapaarMitra AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { primary: '#2563eb', secondary: '#10b981', darkBg: '#0f172a', darkCard: '#1e293b' } } }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 text-gray-800 dark:bg-darkBg dark:text-gray-200 min-h-screen flex flex-col md:flex-row">
+
+    <!-- Left Side Presentation -->
+    <div class="hidden md:flex md:w-5/12 bg-gradient-to-br from-primary to-blue-900 text-white flex-col justify-between p-12 relative overflow-hidden">
+        <div class="z-10 relative">
+            <div class="flex items-center mb-12">
+                <i class="fas fa-shield-alt text-4xl mr-3 text-secondary"></i>
+                <span class="font-extrabold text-3xl tracking-tight">VyapaarMitra</span>
+            </div>
+            <h1 class="text-4xl font-extrabold leading-tight mb-6">Complete Your Business Profile</h1>
+            <p class="text-blue-100 text-lg mb-8">Set up your profile to receive tailored compliance alerts, AI-driven tax strategies, and government scheme eligibility checks.</p>
+            
+            <div class="space-y-6">
+                <div class="flex items-center text-blue-50">
+                    <div class="bg-white/20 p-3 rounded-xl mr-4"><i class="fas fa-gavel text-xl"></i></div>
+                    <div><h4 class="font-bold">Legal Accuracy</h4><p class="text-sm text-blue-200">100% compliant with state and central laws</p></div>
+                </div>
+                <div class="flex items-center text-blue-50">
+                    <div class="bg-white/20 p-3 rounded-xl mr-4"><i class="fas fa-robot text-xl"></i></div>
+                    <div><h4 class="font-bold">AI Powered Insights</h4><p class="text-sm text-blue-200">Get automated tax filing and document generation</p></div>
+                </div>
+                <div class="flex items-center text-blue-50">
+                    <div class="bg-white/20 p-3 rounded-xl mr-4"><i class="fas fa-user-tie text-xl"></i></div>
+                    <div><h4 class="font-bold">Expert Consultants</h4><p class="text-sm text-blue-200">Connect with Government-paneled experts</p></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background decorative elements -->
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-white opacity-5 rounded-full blur-3xl"></div>
+        <div class="absolute top-12 -left-12 w-64 h-64 bg-blue-400 opacity-10 rounded-full blur-2xl"></div>
+    </div>
+
+    <!-- Right Side Form -->
+    <div class="w-full md:w-7/12 flex flex-col p-6 md:p-12 overflow-y-auto">
+        <div class="flex justify-between items-center mb-10 md:hidden">
+            <div class="flex items-center">
+                <i class="fas fa-shield-alt text-primary text-2xl mr-2"></i>
+                <span class="font-extrabold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">VyapaarMitra</span>
+            </div>
+        </div>
+        
+        <div class="flex justify-end mb-6">
+            <button onclick="localStorage.removeItem('token'); window.location.href='login.html';" class="text-gray-500 hover:text-red-500 font-semibold text-sm transition-colors">
+                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+            </button>
+        </div>
+
+        <div class="max-w-xl mx-auto w-full">
+            <h2 class="text-3xl font-extrabold mb-2 text-gray-900 dark:text-white">Business Setup</h2>
+            <p class="text-gray-500 dark:text-gray-400 mb-8 font-medium">Please enter your official business details.</p>
+
+            <form id="onboarding-form" class="space-y-6">
+                <!-- Step Section 1 -->
+                <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 space-y-4">
+                    <h3 class="text-lg font-bold border-b border-gray-100 dark:border-gray-800 pb-2 mb-4 text-primary"><i class="fas fa-info-circle mr-2"></i> Basic Information</h3>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Registered Business Name *</label>
+                        <input type="text" id="biz-name" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all" placeholder="M/s ABC Enterprises">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Industry / Type *</label>
+                            <select id="biz-type" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all">
+                                <option value="" disabled selected>Select Industry</option>
+                                <option value="Bakery">Food & Bakery</option>
+                                <option value="Retail Shop">Retail & E-commerce</option>
+                                <option value="Restaurant">Restaurant & Hospitality</option>
+                                <option value="Manufacturing">Manufacturing & Processing</option>
+                                <option value="Startup">Technology & Startup</option>
+                                <option value="Services">Professional Services</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Year of Incorporation</label>
+                            <input type="number" id="biz-year" min="1900" max="2026" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all" placeholder="e.g. 2021">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step Section 2 -->
+                <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 space-y-4">
+                    <h3 class="text-lg font-bold border-b border-gray-100 dark:border-gray-800 pb-2 mb-4 text-secondary"><i class="fas fa-chart-line mr-2"></i> Operational & Financial Data</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Annual Turnover (₹) *</label>
+                            <input type="number" id="biz-turnover" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all" placeholder="e.g. 5000000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Number of Employees</label>
+                            <select id="biz-employees" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all">
+                                <option value="1-5">1-5 Employees</option>
+                                <option value="6-20">6-20 Employees</option>
+                                <option value="21-50">21-50 Employees</option>
+                                <option value="50+">More than 50</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Registered State *</label>
+                        <select id="biz-state" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all">
+                            <option value="" disabled selected>Select State</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step Section 3 -->
+                <div class="bg-white dark:bg-darkCard p-6 rounded-2xl shadow-sm border border-gray-200 dark:border-gray-800 space-y-4">
+                    <h3 class="text-lg font-bold border-b border-gray-100 dark:border-gray-800 pb-2 mb-4 text-yellow-500"><i class="fas fa-file-invoice mr-2"></i> Compliance Identifiers</h3>
+                    
+                    <div class="relative">
+                        <label class="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">GSTIN / Registration Number <span class="text-red-500">*</span></label>
+                        <input type="text" id="biz-gst" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all uppercase" placeholder="22AAAAA0000A1Z5">
+                        <i id="gst-loader" class="fas fa-spinner fa-spin absolute right-4 bottom-4 text-primary hidden"></i>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Official Communication Email *</label>
+                        <input type="email" id="biz-email" required class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all" placeholder="admin@business.com">
+                    </div>
+                </div>
+                
+                <button type="submit" id="btn-submit" class="w-full py-4 mt-8 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-extrabold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex justify-center items-center">
+                    Initialize Dashboard <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="onboarding.js"></script>
+</body>
+</html>
