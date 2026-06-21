@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome | VyapaarMitra AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { primary: '#2563eb', secondary: '#10b981', darkBg: '#0f172a', darkCard: '#1e293b' } } }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-panel {
+            background: rgba(30, 41, 59, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .bg-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232563eb' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-darkBg text-gray-800 dark:text-gray-200 min-h-screen flex items-center justify-center relative overflow-hidden bg-pattern transition-colors duration-300">
+
+    <!-- Decorative Elements -->
+    <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-secondary rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+    <div class="max-w-5xl w-full glass-panel rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row m-4 z-10 relative">
+        
+        <!-- Left Side: Branding & Trust -->
+        <div class="w-full md:w-5/12 bg-gradient-to-br from-primary to-blue-900 p-10 text-white flex flex-col justify-between">
+            <div>
+                <div class="flex items-center mb-8">
+                    <i class="fas fa-shield-alt text-3xl mr-3 text-secondary drop-shadow-md"></i>
+                    <span class="font-extrabold text-2xl tracking-tight">VyapaarMitra AI</span>
+                </div>
+                <h1 class="text-4xl font-extrabold tracking-tight mb-4 leading-tight">Your Business<br>Compliance Guardian.</h1>
+                <p class="text-blue-100 text-lg mb-8">Join thousands of MSMEs automating their legal & tax compliance seamlessly.</p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-white/10 rounded-xl p-4 backdrop-blur-sm border border-white/10">
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i><i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-sm italic text-blue-50">"The overnight crisis alerts saved my business from massive GST penalties. An absolute lifesaver!"</p>
+                    <p class="text-xs font-bold mt-2 text-blue-200">- Rajesh K., Retail Owner</p>
+                </div>
+                <div class="flex items-center space-x-3 mt-4 text-sm text-blue-200 font-medium">
+                    <span class="flex items-center"><i class="fas fa-lock mr-1"></i> 256-bit Secure</span>
+                    <span class="flex items-center"><i class="fas fa-university mr-1"></i> Govt Compliant</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Auth Form -->
+        <div class="w-full md:w-7/12 p-10 lg:p-16 relative bg-white/50 dark:bg-darkCard/50">
+            <div class="absolute top-6 right-6">
+                <button id="theme-toggle" class="w-10 h-10 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-500 hover:text-primary dark:text-gray-400 transition-colors shadow-sm">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+            </div>
+
+            <div class="max-w-md mx-auto">
+                <h2 class="text-3xl font-extrabold mb-2 text-gray-900 dark:text-white" id="form-title">Welcome Back</h2>
+                <p class="text-gray-500 dark:text-gray-400 mb-8 font-medium" id="form-subtitle">Securely login to access your compliance dashboard.</p>
+
+                <form id="auth-form" class="space-y-6">
+                    <div class="group">
+                        <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Username</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-user text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                            </div>
+                            <input type="text" id="username" required class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all shadow-sm" placeholder="Enter username">
+                        </div>
+                    </div>
+                    
+                    <div class="group">
+                        <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400 group-focus-within:text-primary transition-colors"></i>
+                            </div>
+                            <input type="password" id="password" required class="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-primary dark:bg-gray-800 outline-none transition-all shadow-sm" placeholder="Enter password">
+                        </div>
+                    </div>
+                    
+                    <div id="error-msg" class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 text-sm font-medium p-3 rounded-lg hidden flex items-center">
+                        <i class="fas fa-exclamation-circle mr-2"></i> <span></span>
+                    </div>
+
+                    <button type="submit" id="btn-submit" class="w-full py-4 mt-2 bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-extrabold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 flex justify-center items-center">
+                        <span id="btn-text">Secure Login</span> <i class="fas fa-arrow-right ml-2 opacity-80"></i>
+                    </button>
+                </form>
+
+                <div class="mt-8 text-center text-sm font-medium text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-6">
+                    <span id="toggle-text">New to VyapaarMitra?</span> 
+                    <button id="btn-toggle-mode" class="text-primary font-extrabold hover:underline ml-1 transition-colors">Create an Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
